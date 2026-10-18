@@ -2036,3 +2036,37 @@ Day 27：DeepSeek Chat API 适配器及配置开关、超时/异常降级；尚�
 - 仅修改 `README.md` 与本计划；运行方式沿用 README，不需要数据库迁移，回滚本次提交仅还原文档。
 - 继续 `King/day-37-assistant-mysql-live` 与 [PR #21](https://github.com/Kin9816/git-ai-spring-boot-3-maven/pull/21) 完成本模块收尾；显式 push 后核对本地、远程及 PR head SHA，不强推、不合并。
 - 后续可按每日边界安排浏览器与真实数据库、模型的合成全链路验收；实际人工复核 Day 35 完整输出及真实协作经历仍需用户事实。今天不推进下一模块；最终验收未全部完成，自动化保持启用。
+
+## Day 38 任务（2026-10-18）
+
+### 当天任务边界
+
+- 只补真实浏览器 → Vue 前端 → Spring Boot/JWT → 隔离 MySQL → 官方 DeepSeek 的合成助手交互验收；复用现有页面和业务，不新增产品功能。
+- 新建专用空库，合成账号、岗位、简历、投递和规则匹配通过真实 HTTP 准备；浏览器真实登录并检查学生首轮/续聊、HR 所属投递助手、只读分数及人工复核取消流程。
+- 每轮最多 3 次真实模型调用，适配器不重试且不完整回复阻止后续生成。首轮定位错误无调用；第二轮 3 次完整生成后仅被可选 favicon 404 的过严日志断言判失败，因此修正日志分类后允许最后一轮 3 次完整检查，今日累计上限 6 次。保留全部失败记录，不将失败改写为通过。沿用测试专用 2048 token / 30 秒，保留生产默认配置；回环服务及缓存降级不连接共享 Redis。
+- 核对浏览器显示与真实回复、会话历史、规则分和投递状态，比较助手操作前后七表快照；保留截图及私有原始证据，Git 仅收录安全摘要和哈希，不提交凭证或模型原文。
+- 更新 README、ROADMAP、本计划及验收说明；执行常规后端测试/打包、前端构建和显式浏览器检查。以已交付 Day 37 分支为 PR 基线，提交、push 并核对 SHA；今天不开展其他模块。
+- 人工质量复核、模型增益和真实协作经历仍需实际证据；不由自动化代签，不扩大到正常 Redis 或生产迁移。
+
+### 状态
+
+已完成本模块技术验收：最终真实检查 1 项、浏览器 80/80 项、常规后端 226 项、后端打包和前端构建通过；此前两轮失败保留。完整运行后仅修改截图命名和动画选项并通过语法检查，未再调用模型；实际人工质量与真实协作证据仍待提供。
+
+### 完成内容与验证
+
+- 新增显式选择的 `RecruitmentBrowserMysqlLiveIT` 和真实浏览器脚本，使用生产 Spring Boot/JWT/MyBatis/规则/聊天服务与官方适配器；不安装 API、Mapper 或模型返回替身。后端、Vite 均绑定回环，浏览器子进程不接收数据库或模型密钥。
+- 三轮均使用新建空合成库：`ai_job_platform_day38_20261018`、`ai_job_platform_day38_2026101802`、`ai_job_platform_day38_2026101803`。通过 10 个真实 HTTP 请求准备两名合成用户、岗位、简历、投递和 75.00 分匹配；sourceText 保存并参与规则识别。本模块未执行 CV 文件上传页面。
+- 首轮因 Element Plus 输入被占位元素遮挡而停止，0 次模型调用；第二轮三次模型回复完整、浏览器 78/79 项通过，但通用控制台断言因 favicon 404 失败。保留两轮 failed 状态和原始证据；零模型复现定位资源后，只对相同回环来源的可选 `/favicon.ico` 404 单独分类，未修复图标，业务 API 错误与其他控制台错误仍使检查失败。
+- 最终第三轮独立真实检查 1 项、浏览器 80/80 项通过：14 个浏览器业务 API 响应均 HTTP 200，学生首轮/续聊与 HR 所属投递三次请求均为 `HTTP 200 / GENERATED / stop`。实际页面文本哈希与模型原文一致；学生历史包含上一轮完整问题与回复，HR 会话独立。
+- 最终一轮 1619 token，全天六次真实调用累计 3144 token，无自动重试；沿用测试进程 2048 token / 30 秒覆盖，生产默认关闭、512 token / 15 秒未改。每轮模型闸门最多三次，不完整结果阻止后续生成。
+- 真实浏览器验证未登录跳转、空表单、上下文选择、等待锁定、只读分数、模型标签、新会话、桌面及学生 390px 布局，以及 HR 助手跳转和人工取消。取消前后无状态 PATCH；七表前后行数与全行列快照哈希一致，75.00 / Redis 缺口 / SUBMITTED 不变。实际人工质量与录用决定均未产生。
+- 常规 `mvn -f backend/pom.xml test` 226 项通过；`mvn -f backend/pom.xml package -DskipTests` 与 `pnpm --dir frontend build` 通过，保留既有前端构建提示。真实检查另以 `ASSISTANT_BROWSER_MYSQL_LIVE_TEST=true` 和 `-Dtest=RecruitmentBrowserMysqlLiveIT` 显式执行，不能将两次失败计为通过。
+- 截图辅助证据有明确限制：同轮前后两张 `hr-confirmation.png` 曾使用相同文件名，首张被覆盖且无法核对原哈希；保留图处于过渡遮罩状态，不作为确认框视觉通过的依据。确认与取消结论来自实际 DOM 和网络断言。运行后仅修正截图唯一命名及禁用截图动画，`node --check frontend/tests/assistant-mysql-browser.cjs` 通过，未重复完整真实链路；最终执行与交付脚本哈希分别记录，不把交付版本说成已再次跑过。
+- 原始模型输出、浏览器结果、截图与日志在忽略目录及个人 evidence 目录保留；Git 仅收录安全摘要、调用用量及证据哈希。先前失败均保留，凭证和令牌不提交；详细结果见 [当天报告](verification/DAY38_2026-10-18.md)与 [安全结果 JSON](verification/DAY38_2026-10-18.results.json)。
+
+### 文件、运行与交付
+
+- 新增 `backend/src/test/java/com/example/aijobs/assistant/RecruitmentBrowserMysqlLiveIT.java`、`frontend/tests/assistant-mysql-browser.cjs`、Day 38 验收报告与结果 JSON；更新 README、ROADMAP、本计划和 DEEPSEEK_ADAPTER。无生产源码、页面、依赖或数据库脚本修改。
+- 普通运行方式沿用 README；真实检查需全新专用空库、运行环境凭证与本机 Node/Playwright/浏览器路径，具体命令见当天报告及适配器说明。回滚本模块移除新增测试与文档，保留合成库和私有证据，不影响业务实现。
+- 分支 `King/day-38-browser-mysql-assistant`，基线 `King/day-37-assistant-mysql-live` / `90f402dca72c039b777404c3cfe9342c572e4bce`；提交、显式 push、远程与 PR head SHA 核对及 PR 链接按实际 Git 交付记录，不强推、不自动合并。
+- 今天只完成 Day 38。下一步由实际复核人审查 Day 35 完整输出，并由用户提供真实协作经历；不重复模型调用或新增复核元数据来替代人工事实。正常 Redis、生产/既有库迁移和真实招聘效果未验证；最终验收尚未全部完成，自动化保持启用。
