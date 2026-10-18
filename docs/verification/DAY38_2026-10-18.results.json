@@ -1,0 +1,1626 @@
+{
+  "dateBeijing": "2026-10-18",
+  "module": "Day 38 browser + MySQL + official assistant synthetic acceptance",
+  "sourceBaseCommit": "90f402dca72c039b777404c3cfe9342c572e4bce",
+  "executedSourceSha256FinalRun": {
+    "backend/src/test/java/com/example/aijobs/assistant/RecruitmentBrowserMysqlLiveIT.java": "a024d546838d4288d964dd1d59bf68bde10c25ed3b1db195ced7cbcbf7b86306",
+    "frontend/tests/assistant-mysql-browser.cjs": "2299976ef340d2d7fdbac2c1fbdd0e1f0bf9671da22a0a74221839407277e4f4"
+  },
+  "deliveredSourceSha256": {
+    "backend/src/test/java/com/example/aijobs/assistant/RecruitmentBrowserMysqlLiveIT.java": "a024d546838d4288d964dd1d59bf68bde10c25ed3b1db195ced7cbcbf7b86306",
+    "frontend/tests/assistant-mysql-browser.cjs": "6ba05263932e23ee2b7b0ba6e0e6492e228ec3862393c78af86a344e166d14c8"
+  },
+  "postRunChange": "Only screenshot names made unique before/after chat and animations disabled. Node syntax checked; full live flow not repeated after this artifact-only edit.",
+  "configuration": {
+    "model": "deepseek-flash",
+    "maxTokens": 2048,
+    "requestTimeout": "PT30S",
+    "liveCallCapPerExecution": 3,
+    "liveCallsAcrossToday": 6
+  },
+  "runs": [
+    {
+      "run": 1,
+      "runId": "50e47d91-3d45-458a-8d80-44a1880dbdf9",
+      "startedAtUtc": "2026-10-18T03:49:46.155642400Z",
+      "completedAtUtc": "2026-10-18T03:50:15.100380100Z",
+      "passed": false,
+      "failure": "Element Plus input was covered by its placeholder; test locator corrected; zero model calls.",
+      "database": {
+        "version": "8.0.46",
+        "schema": "ai_job_platform_day38_20261018"
+      },
+      "rawEvidenceSha256": "be74ff3c95e954ab54f331e5ca2f750bdd91e902cf21ea1c89e76548ffb95880",
+      "browserResultsSha256": "cb605bfa2a4602f042fb672de56de6cd759bf8f57bd834b8efdbeb396da875ce",
+      "fixtureHttpObservations": [
+        {
+          "label": "register-student",
+          "method": "POST",
+          "path": "/api/auth/register",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "login-student",
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "register-hr",
+          "method": "POST",
+          "path": "/api/auth/register",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "login-hr",
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "create-job",
+          "method": "POST",
+          "path": "/api/hr/jobs",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "publish-job",
+          "method": "PATCH",
+          "path": "/api/hr/jobs/1/status",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "create-resume",
+          "method": "POST",
+          "path": "/api/student/resumes",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "publish-resume",
+          "method": "PATCH",
+          "path": "/api/student/resumes/1/status",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "submit-application",
+          "method": "POST",
+          "path": "/api/student/applications",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "compute-rule-match",
+          "method": "POST",
+          "path": "/api/student/matches",
+          "status": 200,
+          "success": true
+        }
+      ],
+      "browserHttp": [
+        {
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/jobs",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/applications",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/matches",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/applications/recommendations",
+          "status": 200
+        }
+      ],
+      "browserChecks": [
+        {
+          "name": "HR: unauthenticated route guard",
+          "passed": true
+        },
+        {
+          "name": "HR: empty login validation",
+          "passed": true
+        },
+        {
+          "name": "HR: real login HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "HR: initially empty transcript",
+          "passed": true
+        },
+        {
+          "name": "HR: empty draft disabled",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: page identity",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: meaningful content",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: no framework overlay",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: no horizontal overflow",
+          "passed": true
+        },
+        {
+          "name": "HR: application context selected",
+          "passed": true
+        },
+        {
+          "name": "HR: missing context disabled",
+          "passed": true
+        }
+      ],
+      "browserChecksPassed": 11,
+      "browserChecksTotal": 11,
+      "browserVersion": "155.0.8059.82",
+      "frontendUrl": "http://127.0.0.1:5173",
+      "backendUrl": "http://127.0.0.1:57552",
+      "console": [
+        {
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "knownConsoleFindings": [],
+      "adapterAttemptCount": 0,
+      "adapterCalls": [],
+      "databaseBeforeBrowser": {
+        "ai_match_result": {
+          "rowCount": 1,
+          "sha256": "76f19d95223be7fe2ab27d3a33646dd95bddd13dd0981396078bdc3093c16cfa"
+        },
+        "job_application": {
+          "rowCount": 1,
+          "sha256": "b75a64c3d26def7539f8d29d0bfdc8f28969037dd31a4b826f0ec8bb084509fa"
+        },
+        "job_posting": {
+          "rowCount": 1,
+          "sha256": "870f0c4cbb83d4c8d2a574e632cb33c5b4bd806c94a6a143ba148eaa109fff38"
+        },
+        "platform_user": {
+          "rowCount": 2,
+          "sha256": "a980e6d12473af044db76076a9aa025a826ee03dfc13fc6765ce3aa61911f023"
+        },
+        "resume": {
+          "rowCount": 1,
+          "sha256": "02505ba13764db4aab98d7d28f3cd23892f062599fa288791b76923403ae7376"
+        },
+        "role": {
+          "rowCount": 3,
+          "sha256": "54c3b4c4987f63451278f6e2736d79f7c2cc75dfbad4df63a8e1f4a9948f2551"
+        },
+        "user_role": {
+          "rowCount": 2,
+          "sha256": "85d8779caedbc392c29fe56b91b4274c89bd29bbc4c0fc5a376b9c067fd7dbf8"
+        }
+      },
+      "databaseAfterBrowser": {
+        "ai_match_result": {
+          "rowCount": 1,
+          "sha256": "76f19d95223be7fe2ab27d3a33646dd95bddd13dd0981396078bdc3093c16cfa"
+        },
+        "job_application": {
+          "rowCount": 1,
+          "sha256": "b75a64c3d26def7539f8d29d0bfdc8f28969037dd31a4b826f0ec8bb084509fa"
+        },
+        "job_posting": {
+          "rowCount": 1,
+          "sha256": "870f0c4cbb83d4c8d2a574e632cb33c5b4bd806c94a6a143ba148eaa109fff38"
+        },
+        "platform_user": {
+          "rowCount": 2,
+          "sha256": "a980e6d12473af044db76076a9aa025a826ee03dfc13fc6765ce3aa61911f023"
+        },
+        "resume": {
+          "rowCount": 1,
+          "sha256": "02505ba13764db4aab98d7d28f3cd23892f062599fa288791b76923403ae7376"
+        },
+        "role": {
+          "rowCount": 3,
+          "sha256": "54c3b4c4987f63451278f6e2736d79f7c2cc75dfbad4df63a8e1f4a9948f2551"
+        },
+        "user_role": {
+          "rowCount": 2,
+          "sha256": "85d8779caedbc392c29fe56b91b4274c89bd29bbc4c0fc5a376b9c067fd7dbf8"
+        }
+      },
+      "databaseUnchanged": true,
+      "screenshots": [
+        {
+          "file": "failure.png",
+          "sha256": "a37b6bad57db4467876fdb25c6a47a89953e22cc1aed87235385207275769f88",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "availableHashMatches": true,
+          "note": ""
+        }
+      ],
+      "statusPatchCount": null
+    },
+    {
+      "run": 2,
+      "runId": "8e6b2bb2-fdad-40e0-bb73-676504cb769b",
+      "startedAtUtc": "2026-10-18T03:50:44.212759Z",
+      "completedAtUtc": "2026-10-18T03:51:10.258349100Z",
+      "passed": false,
+      "failure": "Generic console assertion rejected a favicon 404; 78/79 checks passed; three model calls completed.",
+      "database": {
+        "schema": "ai_job_platform_day38_2026101802",
+        "version": "8.0.46"
+      },
+      "rawEvidenceSha256": "c7e3a142ea133b027750a6385b6ca164856e2f0073f88ef94b1e2fdb908b33c3",
+      "browserResultsSha256": "962bcd8df08baa7fc9bba3b0e2724aa555d61816dbd4dd0eb36ccc03eb4703ee",
+      "fixtureHttpObservations": [
+        {
+          "label": "register-student",
+          "method": "POST",
+          "path": "/api/auth/register",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "login-student",
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "register-hr",
+          "method": "POST",
+          "path": "/api/auth/register",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "login-hr",
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "create-job",
+          "method": "POST",
+          "path": "/api/hr/jobs",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "publish-job",
+          "method": "PATCH",
+          "path": "/api/hr/jobs/1/status",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "create-resume",
+          "method": "POST",
+          "path": "/api/student/resumes",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "publish-resume",
+          "method": "PATCH",
+          "path": "/api/student/resumes/1/status",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "submit-application",
+          "method": "POST",
+          "path": "/api/student/applications",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "compute-rule-match",
+          "method": "POST",
+          "path": "/api/student/matches",
+          "status": 200,
+          "success": true
+        }
+      ],
+      "browserHttp": [
+        {
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/jobs",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/applications",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/matches",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/applications/recommendations",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/student/applications",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/student/resumes",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/student/matches",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/jobs",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/jobs/1",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/student/assistant/chat",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/student/assistant/chat",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/hr/assistant/chat",
+          "status": 200
+        }
+      ],
+      "browserChecks": [
+        {
+          "name": "HR: unauthenticated route guard",
+          "passed": true
+        },
+        {
+          "name": "HR: empty login validation",
+          "passed": true
+        },
+        {
+          "name": "HR: real login HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "HR: initially empty transcript",
+          "passed": true
+        },
+        {
+          "name": "HR: empty draft disabled",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: page identity",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: meaningful content",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: no framework overlay",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: no horizontal overflow",
+          "passed": true
+        },
+        {
+          "name": "HR: application context selected",
+          "passed": true
+        },
+        {
+          "name": "HR: missing context disabled",
+          "passed": true
+        },
+        {
+          "name": "HR: context switch clears draft",
+          "passed": true
+        },
+        {
+          "name": "human confirmation required before PATCH",
+          "passed": true
+        },
+        {
+          "name": "cancel sends no status PATCH",
+          "passed": true
+        },
+        {
+          "name": "cancel retains submitted status",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: unauthenticated route guard",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: empty login validation",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: real login HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: initially empty transcript",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: empty draft disabled",
+          "passed": true
+        },
+        {
+          "name": "STUDENT desktop: page identity",
+          "passed": true
+        },
+        {
+          "name": "STUDENT desktop: meaningful content",
+          "passed": true
+        },
+        {
+          "name": "STUDENT desktop: no framework overlay",
+          "passed": true
+        },
+        {
+          "name": "STUDENT desktop: no horizontal overflow",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: application context selected",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: missing context disabled",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: context switch clears draft",
+          "passed": true
+        },
+        {
+          "name": "bounded browser model request count",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: pending transcript observed",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: input locked while pending",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: new conversation locked while pending",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: chat HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: generated response, no fallback",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: server role and human review",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: rule reference unchanged",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: application remains submitted",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: expected history count",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: rendered response exactly matches real HTTP",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: model label visible",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: readonly score visible",
+          "passed": true
+        },
+        {
+          "name": "bounded browser model request count",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: pending transcript observed",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: input locked while pending",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: new conversation locked while pending",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: chat HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: generated response, no fallback",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: server role and human review",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: rule reference unchanged",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: application remains submitted",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: expected history count",
+          "passed": true
+        },
+        {
+          "name": "student continuation retains conversation",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: rendered response exactly matches real HTTP",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: model label visible",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: readonly score visible",
+          "passed": true
+        },
+        {
+          "name": "STUDENT mobile: page identity",
+          "passed": true
+        },
+        {
+          "name": "STUDENT mobile: meaningful content",
+          "passed": true
+        },
+        {
+          "name": "STUDENT mobile: no framework overlay",
+          "passed": true
+        },
+        {
+          "name": "STUDENT mobile: no horizontal overflow",
+          "passed": true
+        },
+        {
+          "name": "new conversation clears student transcript",
+          "passed": true
+        },
+        {
+          "name": "bounded browser model request count",
+          "passed": true
+        },
+        {
+          "name": "HR: pending transcript observed",
+          "passed": true
+        },
+        {
+          "name": "HR: input locked while pending",
+          "passed": true
+        },
+        {
+          "name": "HR: new conversation locked while pending",
+          "passed": true
+        },
+        {
+          "name": "HR: chat HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "HR: generated response, no fallback",
+          "passed": true
+        },
+        {
+          "name": "HR: server role and human review",
+          "passed": true
+        },
+        {
+          "name": "HR: rule reference unchanged",
+          "passed": true
+        },
+        {
+          "name": "HR: application remains submitted",
+          "passed": true
+        },
+        {
+          "name": "HR: expected history count",
+          "passed": true
+        },
+        {
+          "name": "HR: rendered response exactly matches real HTTP",
+          "passed": true
+        },
+        {
+          "name": "HR: model label visible",
+          "passed": true
+        },
+        {
+          "name": "HR: readonly score visible",
+          "passed": true
+        },
+        {
+          "name": "HR conversation isolated from student",
+          "passed": true
+        },
+        {
+          "name": "human confirmation required before PATCH",
+          "passed": true
+        },
+        {
+          "name": "cancel sends no status PATCH",
+          "passed": true
+        },
+        {
+          "name": "cancel retains submitted status",
+          "passed": true
+        },
+        {
+          "name": "exactly three browser chat requests",
+          "passed": true
+        },
+        {
+          "name": "all browser API responses successful",
+          "passed": true
+        },
+        {
+          "name": "no browser runtime errors or warnings",
+          "passed": false
+        }
+      ],
+      "browserChecksPassed": 78,
+      "browserChecksTotal": 79,
+      "browserVersion": "155.0.8059.82",
+      "frontendUrl": "http://127.0.0.1:5173",
+      "backendUrl": "http://127.0.0.1:64089",
+      "console": [
+        {
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "knownConsoleFindings": [],
+      "adapterAttemptCount": 3,
+      "adapterCalls": [
+        {
+          "startedAtUtc": "2026-10-18T03:51:01.595934400Z",
+          "completedAtUtc": "2026-10-18T03:51:04.856857700Z",
+          "status": "GENERATED",
+          "httpStatus": 200,
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 319,
+            "completionTokens": 170,
+            "totalTokens": 489
+          },
+          "outputSha256": "1a741f4288e3d5d80a771e3d4eb7e5e6af8613547978f46907d75b72d35bae8e",
+          "renderedTextMatches": true,
+          "messageCount": 3
+        },
+        {
+          "startedAtUtc": "2026-10-18T03:51:04.947326100Z",
+          "completedAtUtc": "2026-10-18T03:51:06.451641200Z",
+          "status": "GENERATED",
+          "httpStatus": 200,
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 518,
+            "completionTokens": 110,
+            "totalTokens": 628
+          },
+          "outputSha256": "ebceacf01cdc4b7fb9b86a4b7e31c0578332a73115b42b9f000767514411654a",
+          "renderedTextMatches": true,
+          "messageCount": 5
+        },
+        {
+          "startedAtUtc": "2026-10-18T03:51:06.709800400Z",
+          "completedAtUtc": "2026-10-18T03:51:08.488850900Z",
+          "status": "GENERATED",
+          "httpStatus": 200,
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 320,
+            "completionTokens": 88,
+            "totalTokens": 408
+          },
+          "outputSha256": "d90919746ee1a12ce66d5e0f0a84811b22aae3c88973f1042178cba01451fc83",
+          "renderedTextMatches": true,
+          "messageCount": 3
+        }
+      ],
+      "databaseBeforeBrowser": {
+        "ai_match_result": {
+          "rowCount": 1,
+          "sha256": "66b9f0a13be020223ff46d0bab9e925c0ab79e530422b0d6a7b9440a8a848d1f"
+        },
+        "job_application": {
+          "rowCount": 1,
+          "sha256": "40294c396603546ba4f82c6f45875a299c67f14d82ab6f8bc2705502b4a9251b"
+        },
+        "job_posting": {
+          "rowCount": 1,
+          "sha256": "1a6a2b021197369e30f3e701c4f07b62f4b4a946dcc7dc36a832938d3ae83d74"
+        },
+        "platform_user": {
+          "rowCount": 2,
+          "sha256": "8eac38d66dcf0ce41dc7a9ff0f06056eab6ddf6bad3da6e3fda7e1612afe592f"
+        },
+        "resume": {
+          "rowCount": 1,
+          "sha256": "a8dbb1b58e56784b21bf3a9276684c92d3cb88d8268cb3c92fdf98edae2e8628"
+        },
+        "role": {
+          "rowCount": 3,
+          "sha256": "288162b4864e913fb0678c0c6452e281b2d4f79e1b7b37aa738fd5b43d6c9817"
+        },
+        "user_role": {
+          "rowCount": 2,
+          "sha256": "d4f302d8b146220ce14693d91c65abff2ca48e33577cc0386a115ef897ba31a0"
+        }
+      },
+      "databaseAfterBrowser": {
+        "ai_match_result": {
+          "rowCount": 1,
+          "sha256": "66b9f0a13be020223ff46d0bab9e925c0ab79e530422b0d6a7b9440a8a848d1f"
+        },
+        "job_application": {
+          "rowCount": 1,
+          "sha256": "40294c396603546ba4f82c6f45875a299c67f14d82ab6f8bc2705502b4a9251b"
+        },
+        "job_posting": {
+          "rowCount": 1,
+          "sha256": "1a6a2b021197369e30f3e701c4f07b62f4b4a946dcc7dc36a832938d3ae83d74"
+        },
+        "platform_user": {
+          "rowCount": 2,
+          "sha256": "8eac38d66dcf0ce41dc7a9ff0f06056eab6ddf6bad3da6e3fda7e1612afe592f"
+        },
+        "resume": {
+          "rowCount": 1,
+          "sha256": "a8dbb1b58e56784b21bf3a9276684c92d3cb88d8268cb3c92fdf98edae2e8628"
+        },
+        "role": {
+          "rowCount": 3,
+          "sha256": "288162b4864e913fb0678c0c6452e281b2d4f79e1b7b37aa738fd5b43d6c9817"
+        },
+        "user_role": {
+          "rowCount": 2,
+          "sha256": "d4f302d8b146220ce14693d91c65abff2ca48e33577cc0386a115ef897ba31a0"
+        }
+      },
+      "databaseUnchanged": true,
+      "screenshots": [
+        {
+          "file": "hr-confirmation.png",
+          "sha256": "ff65c2c64166d476877b91153b50492f5ab280d6f2a3819164d78ce62f0001bd",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "availableHashMatches": false,
+          "note": "Superseded by later screenshot using the same filename; not usable as evidence."
+        },
+        {
+          "file": "student-desktop.png",
+          "sha256": "d96b870037db9bff3abf530f5a19ec490cab712397cfed12d6d4efbe65042feb",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "availableHashMatches": true,
+          "note": ""
+        },
+        {
+          "file": "student-mobile.png",
+          "sha256": "2f7c23d24d7422a5722d1b726b2728a8ad310b22fbc20ff60bf9fdf079d219b6",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "availableHashMatches": true,
+          "note": ""
+        },
+        {
+          "file": "hr-desktop.png",
+          "sha256": "7c0be7768b562ee104fbca002a73dade01e6f6880152ccd711681da24940b775",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "availableHashMatches": true,
+          "note": ""
+        },
+        {
+          "file": "hr-confirmation.png",
+          "sha256": "3410a465ad55fe76c69e4457151297061a9de6c132d0ec748798f74fea2f8321",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "availableHashMatches": true,
+          "note": "Confirmation image caught transition overlay; use DOM/network checks for dialog behavior."
+        },
+        {
+          "file": "failure.png",
+          "sha256": "9ae0699edc7b0225fa4a16edc56663f520d6c98d3fd32d63675c57b81c216396",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "availableHashMatches": true,
+          "note": ""
+        }
+      ],
+      "statusPatchCount": 0
+    },
+    {
+      "run": 3,
+      "runId": "01410fa1-02d7-4b62-9d8e-0d08620ac30e",
+      "startedAtUtc": "2026-10-18T03:53:07.680077900Z",
+      "completedAtUtc": "2026-10-18T03:53:31.740931900Z",
+      "passed": true,
+      "failure": null,
+      "database": {
+        "version": "8.0.46",
+        "schema": "ai_job_platform_day38_2026101803"
+      },
+      "rawEvidenceSha256": "377357ad9c87284b09a3302c882ed1e4da7eb74a142e854c2a0404c681874ad7",
+      "browserResultsSha256": "e102ec4f1a97857a5ba38d79ac0aacf6fc10640031ec02328c816ab33a4508d6",
+      "fixtureHttpObservations": [
+        {
+          "label": "register-student",
+          "method": "POST",
+          "path": "/api/auth/register",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "login-student",
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "register-hr",
+          "method": "POST",
+          "path": "/api/auth/register",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "login-hr",
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "create-job",
+          "method": "POST",
+          "path": "/api/hr/jobs",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "publish-job",
+          "method": "PATCH",
+          "path": "/api/hr/jobs/1/status",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "create-resume",
+          "method": "POST",
+          "path": "/api/student/resumes",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "publish-resume",
+          "method": "PATCH",
+          "path": "/api/student/resumes/1/status",
+          "status": 200,
+          "success": true
+        },
+        {
+          "label": "submit-application",
+          "method": "POST",
+          "path": "/api/student/applications",
+          "status": 201,
+          "success": true
+        },
+        {
+          "label": "compute-rule-match",
+          "method": "POST",
+          "path": "/api/student/matches",
+          "status": 200,
+          "success": true
+        }
+      ],
+      "browserHttp": [
+        {
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/jobs",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/matches",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/applications",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/hr/applications/recommendations",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/login",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/student/resumes",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/student/applications",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/student/matches",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/jobs",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/jobs/1",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/student/assistant/chat",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/student/assistant/chat",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/hr/assistant/chat",
+          "status": 200
+        }
+      ],
+      "browserChecks": [
+        {
+          "name": "HR: unauthenticated route guard",
+          "passed": true
+        },
+        {
+          "name": "HR: empty login validation",
+          "passed": true
+        },
+        {
+          "name": "HR: real login HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "HR: initially empty transcript",
+          "passed": true
+        },
+        {
+          "name": "HR: empty draft disabled",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: page identity",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: meaningful content",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: no framework overlay",
+          "passed": true
+        },
+        {
+          "name": "HR desktop: no horizontal overflow",
+          "passed": true
+        },
+        {
+          "name": "HR: application context selected",
+          "passed": true
+        },
+        {
+          "name": "HR: missing context disabled",
+          "passed": true
+        },
+        {
+          "name": "HR: context switch clears draft",
+          "passed": true
+        },
+        {
+          "name": "human confirmation required before PATCH",
+          "passed": true
+        },
+        {
+          "name": "cancel sends no status PATCH",
+          "passed": true
+        },
+        {
+          "name": "cancel retains submitted status",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: unauthenticated route guard",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: empty login validation",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: real login HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: initially empty transcript",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: empty draft disabled",
+          "passed": true
+        },
+        {
+          "name": "STUDENT desktop: page identity",
+          "passed": true
+        },
+        {
+          "name": "STUDENT desktop: meaningful content",
+          "passed": true
+        },
+        {
+          "name": "STUDENT desktop: no framework overlay",
+          "passed": true
+        },
+        {
+          "name": "STUDENT desktop: no horizontal overflow",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: application context selected",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: missing context disabled",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: context switch clears draft",
+          "passed": true
+        },
+        {
+          "name": "before model calls: no application runtime errors or warnings",
+          "passed": true
+        },
+        {
+          "name": "bounded browser model request count",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: pending transcript observed",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: input locked while pending",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: new conversation locked while pending",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: chat HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: generated response, no fallback",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: server role and human review",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: rule reference unchanged",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: application remains submitted",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: expected history count",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: rendered response exactly matches real HTTP",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: model label visible",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: readonly score visible",
+          "passed": true
+        },
+        {
+          "name": "bounded browser model request count",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: pending transcript observed",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: input locked while pending",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: new conversation locked while pending",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: chat HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: generated response, no fallback",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: server role and human review",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: rule reference unchanged",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: application remains submitted",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: expected history count",
+          "passed": true
+        },
+        {
+          "name": "student continuation retains conversation",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: rendered response exactly matches real HTTP",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: model label visible",
+          "passed": true
+        },
+        {
+          "name": "STUDENT: readonly score visible",
+          "passed": true
+        },
+        {
+          "name": "STUDENT mobile: page identity",
+          "passed": true
+        },
+        {
+          "name": "STUDENT mobile: meaningful content",
+          "passed": true
+        },
+        {
+          "name": "STUDENT mobile: no framework overlay",
+          "passed": true
+        },
+        {
+          "name": "STUDENT mobile: no horizontal overflow",
+          "passed": true
+        },
+        {
+          "name": "new conversation clears student transcript",
+          "passed": true
+        },
+        {
+          "name": "bounded browser model request count",
+          "passed": true
+        },
+        {
+          "name": "HR: pending transcript observed",
+          "passed": true
+        },
+        {
+          "name": "HR: input locked while pending",
+          "passed": true
+        },
+        {
+          "name": "HR: new conversation locked while pending",
+          "passed": true
+        },
+        {
+          "name": "HR: chat HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "HR: generated response, no fallback",
+          "passed": true
+        },
+        {
+          "name": "HR: server role and human review",
+          "passed": true
+        },
+        {
+          "name": "HR: rule reference unchanged",
+          "passed": true
+        },
+        {
+          "name": "HR: application remains submitted",
+          "passed": true
+        },
+        {
+          "name": "HR: expected history count",
+          "passed": true
+        },
+        {
+          "name": "HR: rendered response exactly matches real HTTP",
+          "passed": true
+        },
+        {
+          "name": "HR: model label visible",
+          "passed": true
+        },
+        {
+          "name": "HR: readonly score visible",
+          "passed": true
+        },
+        {
+          "name": "HR conversation isolated from student",
+          "passed": true
+        },
+        {
+          "name": "human confirmation required before PATCH",
+          "passed": true
+        },
+        {
+          "name": "cancel sends no status PATCH",
+          "passed": true
+        },
+        {
+          "name": "cancel retains submitted status",
+          "passed": true
+        },
+        {
+          "name": "exactly three browser chat requests",
+          "passed": true
+        },
+        {
+          "name": "all browser API responses successful",
+          "passed": true
+        },
+        {
+          "name": "after model calls: no application runtime errors or warnings",
+          "passed": true
+        }
+      ],
+      "browserChecksPassed": 80,
+      "browserChecksTotal": 80,
+      "browserVersion": "155.0.8059.82",
+      "frontendUrl": "http://127.0.0.1:5173",
+      "backendUrl": "http://127.0.0.1:61456",
+      "console": [
+        {
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://127.0.0.1:5173/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        }
+      ],
+      "knownConsoleFindings": [
+        {
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://127.0.0.1:5173/favicon.ico",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        }
+      ],
+      "adapterAttemptCount": 3,
+      "adapterCalls": [
+        {
+          "startedAtUtc": "2026-10-18T03:53:23.192822600Z",
+          "completedAtUtc": "2026-10-18T03:53:26.463746200Z",
+          "status": "GENERATED",
+          "httpStatus": 200,
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 319,
+            "completionTokens": 211,
+            "totalTokens": 530
+          },
+          "outputSha256": "650bb33a36ddac6168eb6be3c571e094129c144bb7d52d818541b56677f40802",
+          "renderedTextMatches": true,
+          "messageCount": 3
+        },
+        {
+          "startedAtUtc": "2026-10-18T03:53:26.557641600Z",
+          "completedAtUtc": "2026-10-18T03:53:28.180261100Z",
+          "status": "GENERATED",
+          "httpStatus": 200,
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 559,
+            "completionTokens": 100,
+            "totalTokens": 659
+          },
+          "outputSha256": "48eb6965f44de053ed6af77328eeaac582c3db91557b0ae370bd0ccb7253faa2",
+          "renderedTextMatches": true,
+          "messageCount": 5
+        },
+        {
+          "startedAtUtc": "2026-10-18T03:53:28.451765200Z",
+          "completedAtUtc": "2026-10-18T03:53:30.074439200Z",
+          "status": "GENERATED",
+          "httpStatus": 200,
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 320,
+            "completionTokens": 110,
+            "totalTokens": 430
+          },
+          "outputSha256": "7eaa248bd1f1f68a3a20044e6ff4e07d325651aed5e86eae4176ee9f98ac67a7",
+          "renderedTextMatches": true,
+          "messageCount": 3
+        }
+      ],
+      "databaseBeforeBrowser": {
+        "ai_match_result": {
+          "sha256": "648fe1bf6172a0c36a60c7823192f376a5db039dee3a7a73e84c462346cdebf0",
+          "rowCount": 1
+        },
+        "job_application": {
+          "sha256": "dc34405cfe56a111cefe4fd1eb2a424426093e8226e64c819c62306c9e6a81a7",
+          "rowCount": 1
+        },
+        "job_posting": {
+          "sha256": "154a70814bba5c1db3b4485e82b42ade231d4d74dbd368552f2118fe7ad5ca01",
+          "rowCount": 1
+        },
+        "platform_user": {
+          "sha256": "951d59a8994cbafbe48f839b3c8aa788577c685ba6c68a100bfc7eb9f7ce834f",
+          "rowCount": 2
+        },
+        "resume": {
+          "sha256": "9aaf76ccddd55062ae40ebb6437addd0ef23f24ea1f6500c54b8431dfa669fd0",
+          "rowCount": 1
+        },
+        "role": {
+          "sha256": "2d16d7bee168123e6daf54d1c350878a5020261c452997721821d11f5df8171f",
+          "rowCount": 3
+        },
+        "user_role": {
+          "sha256": "6fca4b093822c300a3b8bf31dc8d1fb9eaea13e921549b84a432c98770267f0f",
+          "rowCount": 2
+        }
+      },
+      "databaseAfterBrowser": {
+        "ai_match_result": {
+          "sha256": "648fe1bf6172a0c36a60c7823192f376a5db039dee3a7a73e84c462346cdebf0",
+          "rowCount": 1
+        },
+        "job_application": {
+          "sha256": "dc34405cfe56a111cefe4fd1eb2a424426093e8226e64c819c62306c9e6a81a7",
+          "rowCount": 1
+        },
+        "job_posting": {
+          "sha256": "154a70814bba5c1db3b4485e82b42ade231d4d74dbd368552f2118fe7ad5ca01",
+          "rowCount": 1
+        },
+        "platform_user": {
+          "sha256": "951d59a8994cbafbe48f839b3c8aa788577c685ba6c68a100bfc7eb9f7ce834f",
+          "rowCount": 2
+        },
+        "resume": {
+          "sha256": "9aaf76ccddd55062ae40ebb6437addd0ef23f24ea1f6500c54b8431dfa669fd0",
+          "rowCount": 1
+        },
+        "role": {
+          "sha256": "2d16d7bee168123e6daf54d1c350878a5020261c452997721821d11f5df8171f",
+          "rowCount": 3
+        },
+        "user_role": {
+          "sha256": "6fca4b093822c300a3b8bf31dc8d1fb9eaea13e921549b84a432c98770267f0f",
+          "rowCount": 2
+        }
+      },
+      "databaseUnchanged": true,
+      "screenshots": [
+        {
+          "file": "hr-confirmation.png",
+          "sha256": "683e14eba2aac66c27ecc5cc64a6f8dd87115b8f4fecb1f46d4019a2b377b346",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "availableHashMatches": false,
+          "note": "Superseded by later screenshot using the same filename; not usable as evidence."
+        },
+        {
+          "file": "student-desktop.png",
+          "sha256": "22d64a4053f8669232d9966dca855c9621c2ea57ff4e49ad51fa660ffafba594",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "availableHashMatches": true,
+          "note": ""
+        },
+        {
+          "file": "student-mobile.png",
+          "sha256": "aa9fe15c507202c330be9b46b303c93b973a79e7e046e50ff8190b6edc490928",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "availableHashMatches": true,
+          "note": ""
+        },
+        {
+          "file": "hr-desktop.png",
+          "sha256": "7a547eefb724a163e4066d8a93baa5fbd909fb9d662ba22515e43b040090cbb8",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "availableHashMatches": true,
+          "note": ""
+        },
+        {
+          "file": "hr-confirmation.png",
+          "sha256": "2db4d644b754d85bf7b7c6ab1feaacc76c35851e4d43def807c0699f72bf9623",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "availableHashMatches": true,
+          "note": "Confirmation image caught transition overlay; use DOM/network checks for dialog behavior."
+        }
+      ],
+      "statusPatchCount": 0
+    }
+  ],
+  "totalUsage": {
+    "promptTokens": 2355,
+    "completionTokens": 789,
+    "totalTokens": 3144
+  },
+  "standardChecks": {
+    "backendTests": {
+      "tests": 226,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "backendPackage": "passed",
+    "frontendBuild": "passed"
+  },
+  "humanQualityReview": "PENDING_HUMAN_REVIEW",
+  "limitations": [
+    "Synthetic fixtures created via real HTTP; CV file-upload UI was not exercised.",
+    "Redis success/production migration/real hiring benefit/actual collaboration history unverified.",
+    "Optional favicon404 remains visible and narrowly classified; other console warnings/errors fail.",
+    "Two historical failed JUnit runs preserved; third live JUnit execution passed. Screenshot-only post-run correction has not been live-rerun.",
+    "A mistakenly dated day38_20261016 schema was initialized but never populated; preserved alongside all dated test schemas."
+  ]
+}
